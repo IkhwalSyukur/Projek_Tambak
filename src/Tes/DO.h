@@ -47,6 +47,7 @@ int16_t readDO(uint32_t voltage_mv, uint8_t temperature_c)
 void setup()
 {
   Serial.begin(115200);
+  ADS.begin();
 }
 
 void loop()

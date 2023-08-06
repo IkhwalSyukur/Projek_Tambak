@@ -47,7 +47,7 @@ void readPH()     /*--(Subroutine, reads current value of pH Meter)-------------
   for(int i=0; i<10; i++)                   //get 10 sample values from the sensor to smooth the value
     { 
     ADS.setGain(1); // setGain set to 1 to more precission
-    int16_t nilai_pH = ADS.readADC(0);
+    int16_t nilai_pH = ADS.readADC(1);
     pHavg[i] = nilai_pH;         //get reading from pH sensor and put in array
     delay(10);                            //short delay between readings
     }
