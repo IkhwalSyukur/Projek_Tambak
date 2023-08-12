@@ -4,16 +4,6 @@
 
 ADS1115 ADS(0x48);
 
-void setup (){
-    Serial.begin(115200);
-    ADS.begin();
-}
-
-void loop (){
-    readPH();
-    Serial.printf("Nilai pH = %f\t", pHvalue);
-}
-
 int motorPin = A0;            //pin that turns on pump motor
 int pHpin = A3;               //pin that sends signals to pH meter
 int blinkPin = 13;            //LED pin
@@ -39,6 +29,12 @@ int statusValue;              //indicates if the user wants a regulator or just 
 int pHavg[10];                //array to find an average pH of 10 meter readings
 int temp;                     //temporary place holder used to sort array from small to large
 unsigned long int avgValue;   //stores the average value of the 6 middle pH array readings
+
+
+void setup (){
+    Serial.begin(115200);
+    ADS.begin();
+}
 
 
 /////////////////////////////
@@ -81,3 +77,10 @@ void readPH()     /*--(Subroutine, reads current value of pH Meter)-------------
     }
 }
 /////////////////////////////////////////
+
+void loop (){
+    readPH();
+    Serial.printf("Nilai pH = %f\t", pHvalue);
+}
+
+

@@ -10,8 +10,10 @@ void setup (){
 }
 
 void loop (){
-    ADS.setGain(1); // setGain set to 1 to more precission
-    int16_t nilai_turbidity = ADS.readADC(0);
+    ADS.setGain(0); // setGain set to 1 to more precission
+    int nilai_turbidity = ADS.readADC(0);
     float voltage = nilai_turbidity * (3.3 / 65536.0);
-    Serial.printf("Nilai Tegangan = %f\t", voltage);
+    // float voltage = nilai_turbidity * (5.0 / 1024.0);
+    Serial.printf("Nilai tegangan = %f\n", nilai_turbidity);
+    delay(10);
 }

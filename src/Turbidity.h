@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include"ADS1X15.h"
 
-ADS1115 ADS(0x48);
+// ADS1115 ADS(0x48);
 
 class Turbidity
 {
@@ -17,15 +17,16 @@ float read_sensor(){
     int16_t nilai_turbidity = ADS.readADC(0);
     float voltage = nilai_turbidity * (3.3 / 65536.0);
     return  voltage;
+    // delay(500);
 }
 };
 
 Turbidity turbidity;
 
-void setup (){
-    turbidity.setup();
-}
+// void setup (){
+//     turbidity.setup();
+// }
 
-void loop (){
-    Serial.printf("Nilai Tegangan = %f\t", turbidity.read_sensor());
-}
+// void loop (){
+//     Serial.printf("Nilai Tegangan = %f\n", turbidity.read_sensor());
+// }

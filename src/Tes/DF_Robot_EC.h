@@ -52,7 +52,7 @@ void loop()
 	{
 
 		timepoint = millis();
-		voltage = ads.readADC_SingleEnded(0) / 10;
+		voltage = ads.readADC_SingleEnded(3) / 10;
 		Serial.print("voltage:");
 		Serial.println(voltage, 4);
 

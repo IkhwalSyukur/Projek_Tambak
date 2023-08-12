@@ -15,7 +15,7 @@ void setup()
 
 void loop()
 {
-    ADS.setGain(1); // setGain set to 1 to more precission
+    ADS.setGain(0); // setGain set to 1 to more precission
     raw=ADS.readADC(2);
     Serial.println("raw:\t"+String(raw)+"\tVoltage(mv)"+String(raw*VREF/ADC_RES));
     delay(1000);
