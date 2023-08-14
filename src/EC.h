@@ -1,3 +1,4 @@
+#pragma once
 #include "Arduino.h"
 #include "Adafruit_ADS1X15.h"
 #include "DFRobot_ESP_EC.h"
@@ -21,7 +22,7 @@ public:
     ads.begin();
   }
 
-  void read() {
+  int read() {
     static unsigned long timepoint = millis();
     if (millis() - timepoint > 1000U) {
       timepoint = millis();
@@ -40,6 +41,7 @@ public:
       Serial.println(" ms/cm");
     }
     ec.calibration(voltage, temperature); // calibration process through Serial CMD
+    return ecValue;
   }
 
 private:

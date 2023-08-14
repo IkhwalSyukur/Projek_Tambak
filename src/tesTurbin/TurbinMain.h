@@ -3,10 +3,10 @@
 // #include "fuzzy_motor.h"
 #include "fuzzy_speed.h"
 
-const int zeroCrossPin  = 2;
+const int zeroCrossPin  = 15;
 const int acdPin  = 4;
 //Variables
-int power  = 0;
+int power=10;
 //Objects
 dimmerLamp acd(acdPin,zeroCrossPin);
 
@@ -27,6 +27,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   fz.begin();
+  acd.begin(NORMAL_MODE, ON);
 
   pinMode(23, INPUT_PULLUP);
   pinMode(22, INPUT_PULLUP);
@@ -57,6 +58,7 @@ void fz_task(void *pvParameters){
       fz.fuzify(); // Menghitung keluaran logika fuzzy
       hasil = fz.output(); // Mendapatkan nilai keluaran logika fuzzy
       Serial.printf("output Fuzzy: %d\n", hasil);
+      // digitalWrite(relay,hasil);
       acd.setPower(hasil);
     // Serial.println(dataDO);
       vTaskDelay(10);

@@ -4,10 +4,46 @@
 #include "EC.h"
 #include "pH.h"
 
+// include untuk kebutuhan thingsboard
+#include <WiFi.h>
+#include <WiFiClientSecure.h>
+#include <WebServer.h>
+#include <ThingsBoard.h>
+//
+
+// define dll
+const char* wifiSSID = "Variasi Aluminium 1";
+const char* wifiPassword = "hapisahsyukur2";
+
+const char* apSSID = "ESP-SoftAP";
+const char* apPassword = "";
+
+const char* thingsboardToken = "Ojz6j6cfFJgIJmz1ZIyh";
+const char* thingsboardServer = "thingsboard.cloud";
+const uint16_t thingsboardPort = 1883;
+
+WebServer server(80);
+WiFiClient client;
+ThingsBoard tb(client);
+String receivedData;
+//
+
+//void khusus tcp/ip
+void handleGetData() {
+  server.send(200, "text/plain", receivedData);
+}
+//
+
+int DOdata;
+int turbiditydata;
+int ecdata;
+int phdata;
+
 void DO_task(void *pvParameters);
 void turbidity_task(void *pvParameters);
 void EC_task(void *pvParameters);
 void pH_task(void *pvParameters);
+void server_task(void *pvParameters);
 
 void setup(){
     sensor.setup();
@@ -15,10 +51,42 @@ void setup(){
     ecMeasurement.setup();
     phMeasurement.setup();
 
+  //Setup untuk thingsboard
+  // Connect to Wi-Fi network
+  WiFi.begin(wifiSSID, wifiPassword);
+  Serial.print("Connecting to WiFi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nConnected to WiFi!");
+
+  // Connect to ThingsBoard server
+  Serial.print("Connecting to ThingsBoard...");
+  if (!tb.connect(thingsboardServer, thingsboardToken, thingsboardPort)) {
+    Serial.println("Failed to connect to ThingsBoard!");
+  } else {
+    Serial.println("Connected to ThingsBoard!");
+  }
+
+
+  // Start the server
+  WiFi.softAP(apSSID);
+  Serial.print("Soft AP SSID: ");
+  Serial.println(apSSID);
+  Serial.print("Soft AP IP Address: ");
+  Serial.println(WiFi.softAPIP());
+  
+  server.on("/GetData", handleGetData);
+  server.begin();
+  Serial.println("HTTP server started.");
+  //
+
     xTaskCreatePinnedToCore(DO_task, "DO task", 1024 * 2 , NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(turbidity_task, "Turbidity task", 1024 * 2 , NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(EC_task, "EC task", 1024 * 2 , NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(pH_task, "pH task", 1024 * 2 , NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(server_task, "Server task", 1024 * 2 , NULL, 10, NULL, 1);
 }
 
 void loop(){
@@ -28,7 +96,7 @@ void loop(){
 void DO_task(void *pvParameters){
   (void) pvParameters;
   while (1) {
-    sensor.readDO();
+    DOdata = sensor.data();
     vTaskDelay(500);
   }
 }
@@ -36,6 +104,7 @@ void DO_task(void *pvParameters){
 void turbidity_task(void *pvParameters){
 (void) pvParameters;
   while (1) {
+    turbiditydata = turbidity.read_sensor();
     Serial.printf("Nilai Tegangan Turbidity = %f\n", turbidity.read_sensor());
     vTaskDelay(500);
   }
@@ -44,7 +113,7 @@ void turbidity_task(void *pvParameters){
 void EC_task(void *pvParameters){
   (void) pvParameters;
   while (1) {
-    ecMeasurement.read();
+    ecdata = ecMeasurement.read();
     vTaskDelay(500);
   }
 }
@@ -54,5 +123,18 @@ void pH_task(void *pvParameters){
   while (1) {
     phMeasurement.read();
     vTaskDelay(500);
+  }
+}
+
+void server_task(void *pvParameters){
+  (void) pvParameters;
+  while (1) {
+  server.handleClient();
+  receivedData = "Data from ESP32 A: " + String(random(0, 100));
+  tb.sendTelemetryInt("data DO", DOdata);
+  tb.sendTelemetryInt("data EC", ecdata);
+  tb.sendTelemetryInt("data turbidity", turbiditydata);
+  vTaskDelay(5000);
+
   }
 }

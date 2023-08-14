@@ -1,9 +1,10 @@
 //Libraries
+#pragma once
 #include <Arduino.h>
 #include <RBDdimmer.h>//https://github.com/RobotDynOfficial/RBDDimmer
 //Parameters
-const int zeroCrossPin  = 1;
-const int acdPin  = 2;
+const int zeroCrossPin  = 15;
+const int acdPin  = 4;
 int MIN_POWER  = 0;
 int MAX_POWER  = 80;
 int POWER_STEP  = 2;
@@ -19,14 +20,14 @@ void testDimmer(){/* function testDimmer */
       Serial.print("lampValue -> ");
       Serial.print(acd.getPower());
       Serial.println("%");
-    delay(100);
+    delay(500);
   }
   for(power=MAX_POWER;power>=MIN_POWER;power-=POWER_STEP){
     acd.setPower(power); // setPower(0-100%);
       Serial.print("lampValue -> ");
       Serial.print(acd.getPower());
       Serial.println("%");
-    delay(100);
+    delay(500);
   }
 }
 

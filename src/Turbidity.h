@@ -1,3 +1,4 @@
+#pragma once
 #include <Arduino.h>
 #include <Wire.h>
 #include"ADS1X15.h"

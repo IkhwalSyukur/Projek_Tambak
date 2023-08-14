@@ -1,8 +1,11 @@
 #include <Arduino.h>
 #include <OneWire.h>
 
+float datasuhu;
+
 class TemperatureSensor {
 public:
+  
   TemperatureSensor(int pin) : ds(pin) {}
 
   void begin() {
@@ -63,6 +66,9 @@ void setup() {
 
 void loop() {
   float temperature = tempSensor.readTemperature();
-  Serial.println(temperature);
+  if (temperature > 0){
+    datasuhu = temperature;
+  }
+  Serial.println(datasuhu);
   delay(100);
 }

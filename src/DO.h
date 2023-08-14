@@ -1,3 +1,4 @@
+#pragma once
 #include <Arduino.h>
 #include "ADS1X15.h"
 
@@ -49,6 +50,9 @@ public:
     Serial.println("DO:\t" + String(calculateDO()) + "\t");
 
     // delay(500);
+  }
+  int data(){
+    return calculateDO();
   }
 
 private:

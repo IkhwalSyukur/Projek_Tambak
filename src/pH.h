@@ -1,3 +1,4 @@
+#pragma once
 #include <Arduino.h>
 #include "DFRobot_ESP_PH_WITH_ADC.h"
 #include "OneWire.h"
@@ -44,9 +45,10 @@ private:
     // Serial.println(voltage, 4);
   }
 
-  void readTemperature() {
+  int readTemperature() {
     sensors.requestTemperatures();
     temperature = sensors.getTempCByIndex(0);
+    return temperature;
     // Serial.print("Temperature:");
     // Serial.print(temperature, 1);
     // Serial.println("^C");
