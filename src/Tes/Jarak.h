@@ -8,7 +8,7 @@ public:
   UltrasonicSensor(int triggerPin, int echoPin) : triggerPin(triggerPin), echoPin(echoPin) {}
 
   void setup() {
-    Serial.begin(9600); // Baud rate for serial communication
+    Serial.begin(115200); // Baud rate for serial communication
     pinMode(triggerPin, OUTPUT); // Trigger pin defined as output
     pinMode(echoPin, INPUT);     // Echo pin defined as input
   }
@@ -19,17 +19,17 @@ public:
     digitalWrite(triggerPin, LOW);
 
     float durationMicroSec = pulseIn(echoPin, HIGH);
-    float distanceInCm = 0.017 * durationMicroSec;
+    float distanceInCm = 0.018 * durationMicroSec;
 
     Serial.print("Distance: ");
     Serial.print(distanceInCm);
     Serial.println(" cm");
 
-    delay(1000);
+    delay(500);
   }
 };
 
-UltrasonicSensor sensor(9, 8); // Create an instance of the UltrasonicSensor class
+UltrasonicSensor sensor(19, 18); // Create an instance of the UltrasonicSensor class
 
 void setup() {
   sensor.setup();

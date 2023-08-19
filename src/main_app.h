@@ -28,12 +28,6 @@ ThingsBoard tb(client);
 String receivedData;
 //
 
-//void khusus tcp/ip
-void handleGetData() {
-  server.send(200, "text/plain", receivedData);
-}
-//
-
 int DOdata;
 int turbiditydata;
 int ecdata;
@@ -44,6 +38,16 @@ void turbidity_task(void *pvParameters);
 void EC_task(void *pvParameters);
 void pH_task(void *pvParameters);
 void server_task(void *pvParameters);
+
+//void khusus tcp/ip
+void handleGetData() {
+  server.send(200, "text/plain", receivedData);
+}
+
+void handleRoot() {
+  server.send(200, "text/plain", "Hello from ESP32 A!");
+}
+//
 
 void setup(){
     sensor.setup();
@@ -77,16 +81,17 @@ void setup(){
   Serial.print("Soft AP IP Address: ");
   Serial.println(WiFi.softAPIP());
   
-  server.on("/GetData", handleGetData);
+  server.on("/tes", handleRoot);
+  // server.on("/GetData", handleGetData);
   server.begin();
   Serial.println("HTTP server started.");
   //
 
-    xTaskCreatePinnedToCore(DO_task, "DO task", 1024 * 2 , NULL, 5, NULL, 1);
+    // xTaskCreatePinnedToCore(DO_task, "DO task", 1024 * 2 , NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(turbidity_task, "Turbidity task", 1024 * 2 , NULL, 5, NULL, 1);
-    xTaskCreatePinnedToCore(EC_task, "EC task", 1024 * 2 , NULL, 5, NULL, 1);
-    xTaskCreatePinnedToCore(pH_task, "pH task", 1024 * 2 , NULL, 5, NULL, 1);
-    xTaskCreatePinnedToCore(server_task, "Server task", 1024 * 2 , NULL, 10, NULL, 1);
+    // xTaskCreatePinnedToCore(EC_task, "EC task", 1024 * 2 , NULL, 5, NULL, 1);
+    // xTaskCreatePinnedToCore(pH_task, "pH task", 1024 * 2 , NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(server_task, "Server task", 1024 * 4 , NULL, 15, NULL, 1);
 }
 
 void loop(){
@@ -96,7 +101,8 @@ void loop(){
 void DO_task(void *pvParameters){
   (void) pvParameters;
   while (1) {
-    DOdata = sensor.data();
+    DOdata = sensor.readDO();
+    // Serial.println("DO:\t" + String(DOdata) + "\t");
     vTaskDelay(500);
   }
 }
@@ -121,7 +127,8 @@ void EC_task(void *pvParameters){
 void pH_task(void *pvParameters){
   (void) pvParameters;
   while (1) {
-    phMeasurement.read();
+    phdata = phMeasurement.read();
+    Serial.println("pH:\t" + String(phdata) + "\t");
     vTaskDelay(500);
   }
 }
@@ -130,10 +137,11 @@ void server_task(void *pvParameters){
   (void) pvParameters;
   while (1) {
   server.handleClient();
-  receivedData = "Data from ESP32 A: " + String(random(0, 100));
-  tb.sendTelemetryInt("data DO", DOdata);
-  tb.sendTelemetryInt("data EC", ecdata);
-  tb.sendTelemetryInt("data turbidity", turbiditydata);
+  receivedData = "Data DO " + String(DOdata);
+  tb.sendTelemetryFloat("data DO", DOdata);
+  // tb.sendTelemetryFloat("data EC", ecdata);
+  tb.sendTelemetryFloat("data pH", phdata);
+  // tb.sendTelemetryInt("data turbidity", turbiditydata);
   vTaskDelay(5000);
 
   }

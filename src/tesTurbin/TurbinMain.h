@@ -2,6 +2,13 @@
 #include <RBDdimmer.h>
 // #include "fuzzy_motor.h"
 #include "fuzzy_speed.h"
+#include <WiFi.h>
+#include <HTTPClient.h>
+
+const char* ssid = "ESP-SoftAP";
+const char* password = "";
+const char* targetIP = "192.168.4.1"; // IP address of the other ESP
+const int targetPort = 80; // Port to access
 
 const int zeroCrossPin  = 15;
 const int acdPin  = 4;
@@ -22,6 +29,7 @@ int inputFuzzy;
 void fz_task(void *pvParameters);
 void bt_task(void *pvParameters);
 void mn_task(void *pvParameters);
+void cl_task(void *pvParameters);
 
 void setup() {
   // put your setup code here, to run once:
@@ -33,10 +41,19 @@ void setup() {
   pinMode(22, INPUT_PULLUP);
   pinMode(relay, OUTPUT);
 
+  //
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to WiFi");
+  //
 
   xTaskCreatePinnedToCore(fz_task, "Fuzzy Task", 1024 * 2, NULL, 10, NULL, 1);
   // xTaskCreatePinnedToCore(bt_task, "Button Task", 1024 * 2, NULL, 5, NULL, 1);
   // xTaskCreatePinnedToCore(mn_task, "Manual Task", 1024 * 2, NULL, 10, NULL, 1);
+  xTaskCreatePinnedToCore(cl_task, "Client Task", 1024 * 4, NULL, 15, NULL, 1);
 }
 
 void loop() {
@@ -60,6 +77,9 @@ void fz_task(void *pvParameters){
       Serial.printf("output Fuzzy: %d\n", hasil);
       // digitalWrite(relay,hasil);
       acd.setPower(hasil);
+      Serial.print("Motor Value -> ");
+      Serial.print(acd.getPower());
+      Serial.println("%");
     // Serial.println(dataDO);
       vTaskDelay(10);
     }
@@ -100,6 +120,35 @@ void mn_task(void *pvParameters){
       }
     }
     vTaskDelay(10);
+  }
+}
+
+void cl_task(void *pvParameters){
+  (void) pvParameters;
+  for(;;){
+      if (WiFi.status() == WL_CONNECTED) {
+      HTTPClient http;
+
+    String url = "http://" + String(targetIP) + ":" + String(targetPort) + "/tes"; // Adjust the URL accordingly
+
+    Serial.print("Connecting to ");
+    Serial.println(url);
+
+    http.begin(url);
+    int httpCode = http.GET();
+
+    if (httpCode > 0) {
+      String payload = http.getString();
+      Serial.println("HTTP response code: " + String(httpCode));
+      Serial.println("Received data: " + payload);
+    } else {
+      Serial.println("HTTP request failed");
+    }
+
+    http.end();
+  }
+
+  vTaskDelay(3000); // Wait for a while before making the next request
   }
 }
 

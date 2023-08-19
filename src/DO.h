@@ -39,7 +39,7 @@ public:
     ADS.begin();
   }
 
-  void readDO() {
+  float readDO() {
     temperature = READ_TEMP;
     ADS.setGain(1);
     adcRaw = ADS.readADC(2);
@@ -48,6 +48,8 @@ public:
     // Serial.print("ADC RAW:\t" + String(adcRaw) + "\t");
     // Serial.print("ADC Voltage:\t" + String(adcVoltage) + "\t");
     Serial.println("DO:\t" + String(calculateDO()) + "\t");
+    float data = calculateDO();
+    return data;
 
     // delay(500);
   }

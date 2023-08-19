@@ -27,7 +27,13 @@ public:
     ads.begin();
   }
 
-  void read() {
+  float calculatePH() {
+    return phValue = ph.readPH(voltage, temperature);
+    Serial.print("pH:");
+    Serial.println(phValue, 4);
+  }
+
+  float read() {
     static unsigned long timepoint = millis();
     if (millis() - timepoint > 1000U) {
       timepoint = millis();
@@ -36,6 +42,7 @@ public:
       calculatePH();
     }
     calibratePH();
+    return calculatePH();
   }
 
 private:
@@ -52,12 +59,6 @@ private:
     // Serial.print("Temperature:");
     // Serial.print(temperature, 1);
     // Serial.println("^C");
-  }
-
-  void calculatePH() {
-    phValue = ph.readPH(voltage, temperature);
-    Serial.print("pH:");
-    Serial.println(phValue, 4);
   }
 
   void calibratePH() {
