@@ -29,8 +29,8 @@ public:
 
   float calculatePH() {
     return phValue = ph.readPH(voltage, temperature);
-    Serial.print("pH:");
-    Serial.println(phValue, 4);
+    // Serial.print("pH:");
+    // Serial.println(phValue, 4);
   }
 
   float read() {

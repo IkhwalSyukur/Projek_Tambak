@@ -28,10 +28,10 @@ ThingsBoard tb(client);
 String receivedData;
 //
 
-int DOdata;
-int turbiditydata;
-int ecdata;
-int phdata;
+float DOdata;
+float turbiditydata;
+float ecdata;
+float phdata;
 
 void DO_task(void *pvParameters);
 void turbidity_task(void *pvParameters);
@@ -81,16 +81,16 @@ void setup(){
   Serial.print("Soft AP IP Address: ");
   Serial.println(WiFi.softAPIP());
   
-  server.on("/tes", handleRoot);
-  // server.on("/GetData", handleGetData);
+  // server.on("/tes", handleRoot);
+  server.on("/GetData", handleGetData);
   server.begin();
   Serial.println("HTTP server started.");
   //
 
-    // xTaskCreatePinnedToCore(DO_task, "DO task", 1024 * 2 , NULL, 5, NULL, 1);
-    xTaskCreatePinnedToCore(turbidity_task, "Turbidity task", 1024 * 2 , NULL, 5, NULL, 1);
-    // xTaskCreatePinnedToCore(EC_task, "EC task", 1024 * 2 , NULL, 5, NULL, 1);
-    // xTaskCreatePinnedToCore(pH_task, "pH task", 1024 * 2 , NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(DO_task, "DO task", 1024 * 2 , NULL, 5, NULL, 1);
+    // xTaskCreatePinnedToCore(turbidity_task, "Turbidity task", 1024 * 2 , NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(EC_task, "EC task", 1024 * 2 , NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(pH_task, "pH task", 1024 * 2 , NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(server_task, "Server task", 1024 * 4 , NULL, 15, NULL, 1);
 }
 
@@ -102,7 +102,7 @@ void DO_task(void *pvParameters){
   (void) pvParameters;
   while (1) {
     DOdata = sensor.readDO();
-    // Serial.println("DO:\t" + String(DOdata) + "\t");
+    Serial.println("DO:\t" + String(DOdata/1000) + "\t");
     vTaskDelay(500);
   }
 }
@@ -137,9 +137,9 @@ void server_task(void *pvParameters){
   (void) pvParameters;
   while (1) {
   server.handleClient();
-  receivedData = "Data DO " + String(DOdata);
+  receivedData = String(DOdata/1000);
   tb.sendTelemetryFloat("data DO", DOdata);
-  // tb.sendTelemetryFloat("data EC", ecdata);
+  tb.sendTelemetryFloat("data EC", ecdata);
   tb.sendTelemetryFloat("data pH", phdata);
   // tb.sendTelemetryInt("data turbidity", turbiditydata);
   vTaskDelay(5000);

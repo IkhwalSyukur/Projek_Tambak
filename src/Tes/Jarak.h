@@ -25,7 +25,7 @@ public:
     Serial.print(distanceInCm);
     Serial.println(" cm");
 
-    delay(500);
+    delay(300);
   }
 };
 
