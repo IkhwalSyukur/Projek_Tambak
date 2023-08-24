@@ -3,6 +3,7 @@
 #include "Turbidity.h"
 #include "EC.h"
 #include "pH.h"
+#include "puzzy.h"
 
 // include untuk kebutuhan thingsboard
 #include <WiFi.h>
