@@ -12,6 +12,8 @@
 #include <ThingsBoard.h>
 //
 
+FuzzyHandler myFuzzy;
+
 // define dll
 const char* wifiSSID = "Variasi Aluminium 1";
 const char* wifiPassword = "hapisahsyukur2";
@@ -92,7 +94,7 @@ void setup(){
     // xTaskCreatePinnedToCore(turbidity_task, "Turbidity task", 1024 * 2 , NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(EC_task, "EC task", 1024 * 2 , NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(pH_task, "pH task", 1024 * 2 , NULL, 5, NULL, 1);
-    xTaskCreatePinnedToCore(server_task, "Server task", 1024 * 4 , NULL, 15, NULL, 1);
+    // xTaskCreatePinnedToCore(server_task, "Server task", 1024 * 4 , NULL, 15, NULL, 1);
 }
 
 void loop(){

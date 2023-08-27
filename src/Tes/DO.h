@@ -15,8 +15,8 @@ ADS1115 ADS(0x48);
 #define READ_TEMP (25) //Current water temperature ℃, Or temperature sensor function
 
 //Single point calibration needs to be filled CAL1_V and CAL1_T
-#define CAL1_V (1600) //mv
-#define CAL1_T (25)   //℃
+#define CAL1_V (12000) //mv
+#define CAL1_T (33)   //℃
 //Two-point calibration needs to be filled CAL2_V and CAL2_T
 //CAL1 High temperature point, CAL2 Low temperature point
 #define CAL2_V (1300) //mv

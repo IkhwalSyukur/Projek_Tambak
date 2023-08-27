@@ -45,11 +45,11 @@ void FuzzyHandler::begin()
 
 // Fuzzy Input 4 Kekeruhan
   FuzzyInput *Kekeruhan = new FuzzyInput(1);
-  FuzzySet *Kekeruhan_Rendah = new FuzzySet(0, 0, 25, 28);
+  FuzzySet *Kekeruhan_Rendah = new FuzzySet(0, 0, 25, 55);
   Kekeruhan->addFuzzySet(Kekeruhan_Rendah);
-  FuzzySet *Kekeruhan_Normal = new FuzzySet(27, 29, 31, 33);
+  FuzzySet *Kekeruhan_Normal = new FuzzySet(45, 75, 75, 105);
   Kekeruhan->addFuzzySet(Kekeruhan_Normal);
-  FuzzySet *Kekeruhan_Banyak = new FuzzySet(32, 35, 100, 100);
+  FuzzySet *Kekeruhan_Banyak = new FuzzySet(95, 125, 250, 250);
   Kekeruhan->addFuzzySet(Kekeruhan_Banyak);
   fuzzy->addFuzzyInput(Kekeruhan);
 
@@ -896,6 +896,775 @@ void FuzzyHandler::begin()
   Ganti1->addOutput(Ganti);
   FuzzyRule *fuzzyRule51 = new FuzzyRule(51,DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Sedang_EC_Tinggi51, Ganti51);
   fuzzy->addFuzzyRule(fuzzyRule51);
+
+  // Rule 52
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah52 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah52->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal52 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal52->joinWithAND(DO_Rendah_pH_Rendah52, Suhu_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak52 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak52->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal52, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam52 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam52->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak52, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Rendah52 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Rendah52->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam52, EC_Rendah);
+  FuzzyRuleConsequent *Ganti52 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule52 = new FuzzyRule(52,DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Rendah52, Ganti52);
+  fuzzy->addFuzzyRule(fuzzyRule52);
+
+  // Rule 53
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah53 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah53->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal53 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal53->joinWithAND(DO_Rendah_pH_Rendah53, Suhu_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak53 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak53->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal53, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam53 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam53->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak53, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Normal53 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Normal53->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam53, EC_Normal);
+  FuzzyRuleConsequent *Ganti53 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule53 = new FuzzyRule(53,DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Normal53, Ganti53);
+  fuzzy->addFuzzyRule(fuzzyRule53);
+
+  // Rule 54
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah54 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah54->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal54 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal54->joinWithAND(DO_Rendah_pH_Rendah54, Suhu_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak54 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak54->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal54, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam54 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam54->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak54, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Tinggi54 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Tinggi54->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam54, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti54 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule54 = new FuzzyRule(54,DO_Rendah_pH_Rendah_Suhu_Normal_Kekeruhan_Banyak_Jarak_Dalam_EC_Tinggi54, Ganti54);
+  fuzzy->addFuzzyRule(fuzzyRule54);
+
+  // Rule 55
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah55 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah54->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak55 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak55->joinWithAND(DO_Rendah_pH_Rendah55, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah55 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah55->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak55, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal55 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal55->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah55, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Rendah55 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Rendah55->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal55, EC_Rendah);
+  FuzzyRuleConsequent *Ganti55 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule55 = new FuzzyRule(55,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Rendah55, Ganti55);
+  fuzzy->addFuzzyRule(fuzzyRule55);
+
+  // Rule 56
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah56 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah56->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak56 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak56->joinWithAND(DO_Rendah_pH_Rendah56, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah56 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah56->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak56, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal56 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal56->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah56, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Normal56 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Normal56->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal56, EC_Normal);
+  FuzzyRuleConsequent *Ganti56 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule56 = new FuzzyRule(56,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Normal56, Ganti56);
+  fuzzy->addFuzzyRule(fuzzyRule56);
+
+  // Rule 57
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah57 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah57->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak57 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak57->joinWithAND(DO_Rendah_pH_Rendah57, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah57 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah57->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak57, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal57 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal57->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah57, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Tinggi57 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Tinggi57->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal57, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti57 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule57 = new FuzzyRule(57,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dangkal_EC_Tinggi57, Ganti57);
+  fuzzy->addFuzzyRule(fuzzyRule57);
+
+  // Rule 58
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah58 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah58->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak58 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak58->joinWithAND(DO_Rendah_pH_Rendah58, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah58 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah58->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak58, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang58 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang58->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah58, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Rendah58 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Rendah58->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang58, EC_Rendah); 
+  FuzzyRuleConsequent *Ganti58 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule58 = new FuzzyRule(58,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Rendah58, Ganti58);
+  fuzzy->addFuzzyRule(fuzzyRule58);
+
+  // Rule 59
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah59 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah59->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak59 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak59->joinWithAND(DO_Rendah_pH_Rendah59, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah59 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah59->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak59, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang59 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang59->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah59, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Normal59 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Normal59->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang59, EC_Normal); 
+  FuzzyRuleConsequent *Ganti59 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule59 = new FuzzyRule(59,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Normal59, Ganti59);
+  fuzzy->addFuzzyRule(fuzzyRule59);
+
+  // Rule 60
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah60 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah60->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak60 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak60->joinWithAND(DO_Rendah_pH_Rendah60, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah60 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah60->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak60, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang60 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang60->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah60, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Tinggi60 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Tinggi60->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang60, EC_Tinggi); 
+  FuzzyRuleConsequent *Ganti60 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule60 = new FuzzyRule(60,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Sedang_EC_Tinggi60, Ganti60);
+  fuzzy->addFuzzyRule(fuzzyRule60);
+
+  // Rule 61
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah61 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah61->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak61 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak61->joinWithAND(DO_Rendah_pH_Rendah61, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah61 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah61->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak61, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam61 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam61->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah61, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Rendah61 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Rendah61->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam61, EC_Rendah);
+  FuzzyRuleConsequent *Ganti61 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule61 = new FuzzyRule(61,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Rendah61, Ganti61);
+  fuzzy->addFuzzyRule(fuzzyRule61);
+
+  // Rule 62
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah62 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah62->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak62 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak62->joinWithAND(DO_Rendah_pH_Rendah62, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah62 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah62->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak62, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam62 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam62->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah62, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Normal62 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Normal62->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam62, EC_Normal);
+  FuzzyRuleConsequent *Ganti62 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule62 = new FuzzyRule(62,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Normal62, Ganti62);
+  fuzzy->addFuzzyRule(fuzzyRule62);
+
+  // Rule 63
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah63 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah63->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak63 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak63->joinWithAND(DO_Rendah_pH_Rendah63, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah63 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah63->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak63, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam63 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam63->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah63, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Tinggi63 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Tinggi63->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam63, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti63 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule63 = new FuzzyRule(63,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Rendah_Jarak_Dalam_EC_Tinggi63, Ganti63);
+  fuzzy->addFuzzyRule(fuzzyRule63);
+
+  // Rule 64
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah64 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah64->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak64 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak64->joinWithAND(DO_Rendah_pH_Rendah64, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal64 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal64->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak64, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal64 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal64->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal64, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Rendah64 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Rendah64->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal64, EC_Rendah); 
+  FuzzyRuleConsequent *Ganti64 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule64 = new FuzzyRule(64,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Rendah64, Ganti64);
+  fuzzy->addFuzzyRule(fuzzyRule64);
+
+  // Rule 65
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah65 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah65->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak65 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak65->joinWithAND(DO_Rendah_pH_Rendah65, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal65 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal65->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak65, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal65 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal65->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal65, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Normal65= new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Normal65->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal65, EC_Normal); 
+  FuzzyRuleConsequent *Ganti65 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule65 = new FuzzyRule(65,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Normal65, Ganti65);
+  fuzzy->addFuzzyRule(fuzzyRule65);
+
+  // Rule 66
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah66 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah66->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak66 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak66->joinWithAND(DO_Rendah_pH_Rendah66, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal66 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal66->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak66, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal66 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal66->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal66, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Tinggi66= new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Tinggi66->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal66, EC_Tinggi); 
+  FuzzyRuleConsequent *Ganti66 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule66 = new FuzzyRule(66,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dangkal_EC_Tinggi66, Ganti66);
+  fuzzy->addFuzzyRule(fuzzyRule66);
+
+  // Rule 67
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah67 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah67->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak67 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak67->joinWithAND(DO_Rendah_pH_Rendah67, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal67 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal67->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak67, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang67 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang67->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal67, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Rendah67 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Rendah67->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang67, EC_Rendah);  
+  FuzzyRuleConsequent *Ganti67 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule67 = new FuzzyRule(67,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Rendah67, Ganti67);
+  fuzzy->addFuzzyRule(fuzzyRule67);
+
+  // Rule 68
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah68 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah68->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak68 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak68->joinWithAND(DO_Rendah_pH_Rendah68, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal68 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal68->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak68, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang68 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang68->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal68, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Normal68 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Normal68->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang68, EC_Normal);  
+  FuzzyRuleConsequent *Ganti68 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule68 = new FuzzyRule(68,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Normal68, Ganti68);
+  fuzzy->addFuzzyRule(fuzzyRule68);
+
+
+  // Rule 69
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah69 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah69->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak69 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak69->joinWithAND(DO_Rendah_pH_Rendah69, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal69 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal69->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak69, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang69 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang69->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal69, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Tinggi69 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Tinggi69->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang69, EC_Tinggi);  
+  FuzzyRuleConsequent *Ganti69 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule69 = new FuzzyRule(69,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Sedang_EC_Tinggi69, Ganti69);
+  fuzzy->addFuzzyRule(fuzzyRule69);
+
+  // Rule 70
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah70 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah70->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak70 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak70->joinWithAND(DO_Rendah_pH_Rendah70, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal70 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal70->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak70, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam70 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam70->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal70, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Rendah70 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Rendah70->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam70, EC_Rendah);
+  FuzzyRuleConsequent *Ganti70 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule70 = new FuzzyRule(70,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Rendah70, Ganti70);
+  fuzzy->addFuzzyRule(fuzzyRule70);
+
+  // Rule 71
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah71 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah71->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak71 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak71->joinWithAND(DO_Rendah_pH_Rendah71, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal71 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal71->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak71, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam71 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam71->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal71, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Normal71 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Normal71->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam71, EC_Normal);
+  FuzzyRuleConsequent *Ganti71 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule71 = new FuzzyRule(71,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Normal71, Ganti71);
+  fuzzy->addFuzzyRule(fuzzyRule71);
+
+  // Rule 72
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah72 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah72->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak72 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak72->joinWithAND(DO_Rendah_pH_Rendah72, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal72 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal72->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak72, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam72 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam72->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal72, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Tinggi72 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Tinggi72->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam72, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti72 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule72 = new FuzzyRule(72,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Normal_Jarak_Dalam_EC_Tinggi72, Ganti72);
+  fuzzy->addFuzzyRule(fuzzyRule72);
+
+  // Rule 73
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah73 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah73->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak73 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak73->joinWithAND(DO_Rendah_pH_Rendah73, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak73 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak73->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak73, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal73 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal73->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak73, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Rendah73 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Rendah73->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal73, EC_Rendah);
+  FuzzyRuleConsequent *Ganti73 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule73 = new FuzzyRule(73,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Rendah73, Ganti73);
+  fuzzy->addFuzzyRule(fuzzyRule73);
+
+  // Rule 74
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah74 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah74->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak74 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak74->joinWithAND(DO_Rendah_pH_Rendah74, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak74 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak74->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak74, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal74 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal74->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak74, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Normal74 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Normal74->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal74, EC_Normal);
+  FuzzyRuleConsequent *Ganti74 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule74 = new FuzzyRule(74,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Normal74, Ganti74);
+  fuzzy->addFuzzyRule(fuzzyRule74);
+
+  // Rule 75
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah75 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah75->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak75 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak75->joinWithAND(DO_Rendah_pH_Rendah75, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak75 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak75->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak75, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal75 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal75->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak75, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Tinggi75 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Tinggi75->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal75, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti75 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule75 = new FuzzyRule(75,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dangkal_EC_Tinggi75, Ganti75);
+  fuzzy->addFuzzyRule(fuzzyRule75);
+
+  // Rule 76
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah76 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah76->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak76 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak76->joinWithAND(DO_Rendah_pH_Rendah76, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak76 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak76->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak76, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang76 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang76->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak76, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Rendah76 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Rendah76->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang76, EC_Rendah); 
+  FuzzyRuleConsequent *Ganti76 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule76 = new FuzzyRule(76,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Rendah76, Ganti76);
+  fuzzy->addFuzzyRule(fuzzyRule76);
+
+  // Rule 77
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah77 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah77->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak77 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak77->joinWithAND(DO_Rendah_pH_Rendah77, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak77 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak77->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak77, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang77 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang77->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak77, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Normal77 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Normal77->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang77, EC_Normal); 
+  FuzzyRuleConsequent *Ganti77 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule77 = new FuzzyRule(77,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Normal77, Ganti77);
+  fuzzy->addFuzzyRule(fuzzyRule77);
+
+  // Rule 78
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah78 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah78->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak78 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak78->joinWithAND(DO_Rendah_pH_Rendah78, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak78 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak78->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak78, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang78 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang78->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak78, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Tinggi78 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Tinggi78->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang78, EC_Tinggi); 
+  FuzzyRuleConsequent *Ganti78 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule78 = new FuzzyRule(78,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Sedang_EC_Tinggi78, Ganti78);
+  fuzzy->addFuzzyRule(fuzzyRule78);
+
+  // Rule 79
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah79 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah79->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak79 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak79->joinWithAND(DO_Rendah_pH_Rendah79, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak79 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak79->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak79, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam79 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam79->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak79, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Rendah79 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Rendah79->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam79, EC_Rendah);
+  FuzzyRuleConsequent *Ganti79 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule79 = new FuzzyRule(79,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Rendah79, Ganti79);
+  fuzzy->addFuzzyRule(fuzzyRule79);
+
+  // Rule 80
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah80 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah80->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak80 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak80->joinWithAND(DO_Rendah_pH_Rendah80, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak80 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak80->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak80, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam80 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam80->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak80, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Normal80 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Normal80->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam80, EC_Normal);
+  FuzzyRuleConsequent *Ganti80 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule80 = new FuzzyRule(80,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Normal80, Ganti80);
+  fuzzy->addFuzzyRule(fuzzyRule80);
+
+  // Rule 81
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah81 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah81->joinWithAND(DO_Rendah, pH_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak81 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak81->joinWithAND(DO_Rendah_pH_Rendah81, Suhu_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak81 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak81->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak81, Kekeruhan_Banyak);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam81 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam81->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak81, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Tinggi81 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Tinggi81->joinWithAND(DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam81, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti81 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule81 = new FuzzyRule(81,DO_Rendah_pH_Rendah_Suhu_Banyak_Kekeruhan_Banyak_Jarak_Dalam_EC_Tinggi81, Ganti81);
+  fuzzy->addFuzzyRule(fuzzyRule81);
+
+  // Rule 82
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal82 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal82->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah82 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah82->joinWithAND(DO_Rendah_pH_Normal82, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah82 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah82->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah82, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal82 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal82->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah82, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Rendah82 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Rendah82->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal82, EC_Rendah);
+  FuzzyRuleConsequent *Ganti82 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule82 = new FuzzyRule(82,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Rendah82, Ganti82);
+  fuzzy->addFuzzyRule(fuzzyRule82);
+
+  // Rule 83
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal83 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal83->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah83 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah83->joinWithAND(DO_Rendah_pH_Normal83, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah83 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah83->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah83, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal83 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal83->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah83, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Normal83 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Normal83->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal83, EC_Normal);
+  FuzzyRuleConsequent *Ganti83 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule83 = new FuzzyRule(83,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Normal83, Ganti83);
+  fuzzy->addFuzzyRule(fuzzyRule83);
+
+  // Rule 84
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal84 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal84->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah84 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah84->joinWithAND(DO_Rendah_pH_Normal84, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah84 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah84->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah84, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal84 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal84->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah84, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Tinggi84 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Tinggi84->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal84, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti84 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule84 = new FuzzyRule(84,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dangkal_EC_Tinggi84, Ganti84);
+  fuzzy->addFuzzyRule(fuzzyRule84);
+
+  // Rule 85
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal85 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal85->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah85 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah85->joinWithAND(DO_Rendah_pH_Normal85, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah85 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah85->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah85, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang85 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang85->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah85, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Rendah85 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Rendah85->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang85, EC_Rendah);
+  FuzzyRuleConsequent *Ganti85 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule85 = new FuzzyRule(85,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Rendah85, Ganti85);
+  fuzzy->addFuzzyRule(fuzzyRule85);
+
+  // Rule 86
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal86 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal86->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah86 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah86->joinWithAND(DO_Rendah_pH_Normal86, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah86 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah86->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah86, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang86 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang86->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah86, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Normal86 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Normal86->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang86, EC_Normal);
+  FuzzyRuleConsequent *Ganti86 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule86 = new FuzzyRule(86,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Normal86, Ganti86);
+  fuzzy->addFuzzyRule(fuzzyRule86);
+
+  // Rule 87
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal87 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal87->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah87 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah87->joinWithAND(DO_Rendah_pH_Normal87, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah87 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah87->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah87, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang87 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang87->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah87, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Tinggi87 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Tinggi87->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang87, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti87 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule87 = new FuzzyRule(87,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Sedang_EC_Tinggi87, Ganti87);
+  fuzzy->addFuzzyRule(fuzzyRule87);
+
+  // Rule 88
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal88 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal88->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah88 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah88->joinWithAND(DO_Rendah_pH_Normal88, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah88 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah88->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah88, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam88 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam88->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah88, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Rendah88 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Rendah88->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam88, EC_Rendah);
+  FuzzyRuleConsequent *Ganti88 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule88 = new FuzzyRule(88,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Rendah88, Ganti88);
+  fuzzy->addFuzzyRule(fuzzyRule88);
+
+  // Rule 89
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal89 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal89->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah89 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah89->joinWithAND(DO_Rendah_pH_Normal89, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah89 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah89->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah89, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam89 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam89->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah89, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Normal89 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Normal89->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam89, EC_Normal);
+  FuzzyRuleConsequent *Ganti89 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule89 = new FuzzyRule(89,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Normal89, Ganti89);
+  fuzzy->addFuzzyRule(fuzzyRule89);
+
+  // Rule 90
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal90 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal90->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah90 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah90->joinWithAND(DO_Rendah_pH_Normal90, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah90 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah90->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah90, Kekeruhan_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam90 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam90->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah90, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Tinggi90 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Tinggi90->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam90, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti90 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule90 = new FuzzyRule(90,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Rendah_Jarak_Dalam_EC_Tinggi90, Ganti90);
+  fuzzy->addFuzzyRule(fuzzyRule90);
+
+  // Rule 91
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal91 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal91->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah91 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah91->joinWithAND(DO_Rendah_pH_Normal91, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal91 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal91->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah91, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal91 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal91->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal91, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Rendah91 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Rendah91->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal91, EC_Rendah);  
+  FuzzyRuleConsequent *Ganti91 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule91 = new FuzzyRule(91,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Rendah91, Ganti91);
+  fuzzy->addFuzzyRule(fuzzyRule91);
+
+  // Rule 92
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal92 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal92->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah92 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah92->joinWithAND(DO_Rendah_pH_Normal92, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal92 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal92->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah92, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal92 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal92->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal92, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Normal92 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Normal92->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal92, EC_Normal);  
+  FuzzyRuleConsequent *Ganti92 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule92 = new FuzzyRule(92,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Normal92, Ganti92);
+  fuzzy->addFuzzyRule(fuzzyRule92);
+
+  // Rule 93
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal93 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal93->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah93 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah93->joinWithAND(DO_Rendah_pH_Normal93, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal93 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal93->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah93, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal93 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal93->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal93, Jarak_Dangkal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Tinggi93 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Tinggi93->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal93, EC_Tinggi);  
+  FuzzyRuleConsequent *Ganti93 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule93 = new FuzzyRule(93,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dangkal_EC_Tinggi93, Ganti93);
+  fuzzy->addFuzzyRule(fuzzyRule93);
+
+  // Rule 94
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal94 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal94->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah94 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah94->joinWithAND(DO_Rendah_pH_Normal94, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal94 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal94->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah94, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang94 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang94->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal94, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Rendah94 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Rendah94->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang94, EC_Rendah); 
+  FuzzyRuleConsequent *Ganti94 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule94 = new FuzzyRule(94,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Rendah94, Ganti94);
+  fuzzy->addFuzzyRule(fuzzyRule94);
+
+  // Rule 95
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal95 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal95->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah95 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah95->joinWithAND(DO_Rendah_pH_Normal95, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal95 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal95->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah95, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang95 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang95->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal95, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Normal95 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Normal95 ->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang95, EC_Normal); 
+  FuzzyRuleConsequent *Ganti95 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule95 = new FuzzyRule(95,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Normal95, Ganti95);
+  fuzzy->addFuzzyRule(fuzzyRule95);
+
+  // Rule 96
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal96 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal96->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah96 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah96->joinWithAND(DO_Rendah_pH_Normal96, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal96 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal96->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah96, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang96 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang96->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal96, Jarak_Sedang);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Tinggi96 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Tinggi96 ->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang96, EC_Tinggi); 
+  FuzzyRuleConsequent *Ganti96 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule96 = new FuzzyRule(96,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Sedang_EC_Tinggi96, Ganti96);
+  fuzzy->addFuzzyRule(fuzzyRule96);
+
+  // Rule 97
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal97 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal97->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah97 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah97->joinWithAND(DO_Rendah_pH_Normal97, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal97 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal97->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah97, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam97 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam97->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal97, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Rendah97 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Rendah97->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam97, EC_Rendah);
+  FuzzyRuleConsequent *Ganti97 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule97 = new FuzzyRule(97,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Rendah97, Ganti97);
+  fuzzy->addFuzzyRule(fuzzyRule97);
+
+  // Rule 98
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal98 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal98->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah98 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah98->joinWithAND(DO_Rendah_pH_Normal98, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal98 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal98->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah98, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam98 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam98->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal98, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Normal98 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Normal98->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam98, EC_Normal);
+  FuzzyRuleConsequent *Ganti98 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule98 = new FuzzyRule(98,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Normal98, Ganti98);
+  fuzzy->addFuzzyRule(fuzzyRule98);
+
+  // Rule 99
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal99 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal99->joinWithAND(DO_Rendah, pH_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah99 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah99->joinWithAND(DO_Rendah_pH_Normal99, Suhu_Rendah);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal99 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal99->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah99, Kekeruhan_Normal);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam99 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam99->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal99, Jarak_Dalam);
+  FuzzyRuleAntecedent *DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Tinggi99 = new FuzzyRuleAntecedent();
+  DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Tinggi99->joinWithAND(DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam99, EC_Tinggi);
+  FuzzyRuleConsequent *Ganti99 = new FuzzyRuleConsequent();
+  Ganti1->addOutput(Ganti);
+  FuzzyRule *fuzzyRule99 = new FuzzyRule(99,DO_Rendah_pH_Normal_Suhu_Rendah_Kekeruhan_Normal_Jarak_Dalam_EC_Tinggi99, Ganti99);
+  fuzzy->addFuzzyRule(fuzzyRule99);
 
 }
 
