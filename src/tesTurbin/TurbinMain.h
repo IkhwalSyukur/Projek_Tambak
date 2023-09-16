@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <RBDdimmer.h>
-// #include "fuzzy_motor.h"
-#include "fuzzy_speed.h"
+#include "fuzzy_motor.h"
+// #include "fuzzy_speed.h"
 #include <WiFi.h>
 #include <HTTPClient.h>
 
@@ -42,12 +42,12 @@ void setup() {
   pinMode(relay, OUTPUT);
 
   //
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
-  }
-  Serial.println("Connected to WiFi");
+  // WiFi.begin(ssid, password);
+  // while (WiFi.status() != WL_CONNECTED) {
+  //   delay(1000);
+  //   Serial.println("Connecting to WiFi...");
+  // }
+  // Serial.println("Connected to WiFi");
   //
 
   xTaskCreatePinnedToCore(fz_task, "Fuzzy Task", 1024 * 2, NULL, 10, NULL, 1);
@@ -75,11 +75,11 @@ void fz_task(void *pvParameters){
       fz.fuzify(); // Menghitung keluaran logika fuzzy
       hasil = fz.output(); // Mendapatkan nilai keluaran logika fuzzy
       Serial.printf("output Fuzzy: %d\n", hasil);
-      // digitalWrite(relay,hasil);
-      acd.setPower(hasil);
-      Serial.print("Motor Value -> ");
-      Serial.print(acd.getPower());
-      Serial.println("%");
+      digitalWrite(relay,hasil);
+      // acd.setPower(hasil);
+      // Serial.print("Motor Value -> ");
+      // Serial.print(acd.getPower());
+      // Serial.println("%");
     // Serial.println(dataDO);
       vTaskDelay(10);
     }
