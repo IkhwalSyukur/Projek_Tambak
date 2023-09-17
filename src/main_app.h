@@ -1,3 +1,4 @@
+#pragma once
 #include <Arduino.h>
 #include "DO.h"
 #include "Turbidity.h"
