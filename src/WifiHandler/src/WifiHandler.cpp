@@ -2,7 +2,7 @@
 
 const char *wifi_tag = "WifiHandler";
 
-#define CONNECTION_TIMEOUT 3
+#define CONNECTION_TIMEOUT 1
 
 WifiHandler::WifiHandler(const char *ssid, const char *pass) : _ssid(ssid), _pass(pass)
 {
@@ -46,32 +46,29 @@ void WifiHandler::init()
 {
     ESP_LOGI(wifi_tag, "Connecting to WiFi...");
     WiFi.begin(_ssid, _pass);
-    vTaskDelay(100);
 
-    // Will try for about 10 seconds (20x 500ms)
-    int tryDelay = 500;
-    int numberOfTries = 0;
+    // Wait for the WiFi to connect or reach the connection timeout
+    auto tryDelay = 500;
+    auto numberOfTries = 0;
 
-    // Wait for the WiFi event
-    while (true)
+    while (WiFi.status() != WL_CONNECTED && numberOfTries <= CONNECTION_TIMEOUT)
     {
         WifiHandler::checkStatus();
-        if (WiFi.status() == WL_CONNECTED) break;
         vTaskDelay(tryDelay);
-
-        if (numberOfTries > CONNECTION_TIMEOUT)
-        {
-            ESP_LOGE(wifi_tag, "Failed to connect to WiFi! | num of tries : %d", numberOfTries);
-            // Use disconnect function to force stop trying to connect
-            WiFi.disconnect();
-            break;
-        }
-        else
-        {
-            numberOfTries++;
-        }
+        numberOfTries++;
     }
 
+    if (WiFi.status() != WL_CONNECTED)
+    {
+        ESP_LOGW(wifi_tag, "Failed to connect to WiFi! | num of tries : %d", numberOfTries);
+        // Continue with task creation even if the connection failed
+    }
+    else
+    {
+        WifiHandler::checkStatus();
+    }
+
+    // Create the task regardless of the connection status
     xTaskCreate(&WifiHandler::_staticTaskFunc,
                 "wifi task handler",
                 4096,
@@ -91,17 +88,48 @@ void WifiHandler::init()
 void WifiHandler::_taskFunc()
 {
     ESP_LOGI(wifi_tag, "Wifi task started !");
+    int reconnectAttempts = 0;
+    const int maxReconnectAttempts = 3;
+    const TickType_t reconnectInterval = pdMS_TO_TICKS(60000); // 1 minutes in ticks
+
+    TickType_t lastReconnectTime = xTaskGetTickCount();
+
     while (1)
     {
         if (WiFi.status() != WL_CONNECTED)
         {
-            ESP_LOGW(wifi_tag, "Wifi disconnected, trying to reconnect...");
+            ESP_LOGW(wifi_tag, "WiFi disconnected, trying to reconnect...");
             WiFi.disconnect();
             WiFi.reconnect();
-            vTaskDelay(2000);
-            WifiHandler::checkStatus();
+
+            // Wait for the connection to be established or timeout
+            unsigned long startMillis = xTaskGetTickCount();
+            while (WiFi.status() != WL_CONNECTED && xTaskGetTickCount() - startMillis < pdMS_TO_TICKS(5000))
+            {
+                vTaskDelay(pdMS_TO_TICKS(500));
+            }
+
+            if (WiFi.status() == WL_CONNECTED)
+            {
+                WifiHandler::checkStatus();
+                reconnectAttempts = 0; // Reset the reconnect attempts counter
+            }
+            else
+            {
+                ESP_LOGE(wifi_tag, "Failed to reconnect to WiFi!");
+                reconnectAttempts++;
+
+                if (reconnectAttempts >= maxReconnectAttempts)
+                {
+                    WiFi.disconnect();
+                    ESP_LOGI(wifi_tag, "Waiting for the next reconnection attempt...");
+                    vTaskDelayUntil(&lastReconnectTime, reconnectInterval);
+                    reconnectAttempts = 0; // Reset the reconnect attempts counter
+                }
+            }
         }
-        vTaskDelay(10000);
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
+
     vTaskDelete(NULL);
 }

@@ -22,5 +22,7 @@ void setup()
 
 void loop()
 {
-
+    static int count;
+    Serial.printf("Count : %d\n", ++count);
+    vTaskDelay(1000);
 }
