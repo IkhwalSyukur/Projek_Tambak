@@ -4,7 +4,6 @@
 #include "WifiHandler/src/WifiHandler.h"
 
 WifiHandler wifi("eFisheryPlus", "123123123");
-// WifiHandler *wifi = new WifiHandler("eFisheryPlus", "123123123");
 
 void setup()
 {
@@ -12,12 +11,7 @@ void setup()
     Serial.println("\nWiFi Handler Macca Lab Test !");
     vTaskDelay(1000);
 
-    // wifi = new WifiHandler("eFisheryPlus", "123123123");
     wifi.init();
-    // wifi->init();
-
-    // delete wifi;
-    // Serial.println("Wifi obj already deleted");
 }
 
 void loop()
