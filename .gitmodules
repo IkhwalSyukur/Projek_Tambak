@@ -1,0 +1,3 @@
+[submodule "WifiHandler"]
+	path = WifiHandler
+	url = https://github.com/Armisuari/WifiHandler
