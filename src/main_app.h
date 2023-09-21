@@ -6,13 +6,15 @@
 #include "pH.h"
 #include "puzzy.h"
 
-// include untuk kebutuhan thingsboard
-#include <WiFi.h>
+#include <WifiHandler.h>
 #include <WiFiClientSecure.h>
 #include <WebServer.h>
 #include <ThingsBoard.h>
-//
 
+#include "ServerHandler.h"
+
+WifiHandler wifi("eFisheryPlus", "123123123");
+ServerHandler myServer("myServer");
 FuzzyHandler myFuzzy;
 
 // define dll
@@ -29,7 +31,7 @@ const uint16_t thingsboardPort = 1883;
 WebServer server(80);
 WiFiClient client;
 ThingsBoard tb(client);
-String receivedData;
+String paramToSend;
 //
 
 float DOdata;
@@ -41,19 +43,6 @@ void DO_task(void *pvParameters);
 void turbidity_task(void *pvParameters);
 void EC_task(void *pvParameters);
 void pH_task(void *pvParameters);
-void server_task(void *pvParameters);
-
-// void khusus tcp/ip
-void handleGetData()
-{
-  server.send(200, "text/plain", receivedData);
-}
-
-void handleRoot()
-{
-  server.send(200, "text/plain", "Hello from ESP32 A!");
-}
-//
 
 void setup()
 {
@@ -62,16 +51,10 @@ void setup()
   ecMeasurement.setup();
   phMeasurement.setup();
 
-  // Setup untuk thingsboard
   //  Connect to Wi-Fi network
-  WiFi.begin(wifiSSID, wifiPassword);
-  Serial.print("Connecting to WiFi...");
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("\nConnected to WiFi!");
+  wifi.init();
+  myServer.postToClient(paramToSend); //perlu validasi
+  myServer.begin();
 
   // Connect to ThingsBoard server
   Serial.print("Connecting to ThingsBoard...");
@@ -84,21 +67,8 @@ void setup()
     Serial.println("Connected to ThingsBoard!");
   }
 
-  // Start the server
-  WiFi.softAP(apSSID);
-  Serial.print("Soft AP SSID: ");
-  Serial.println(apSSID);
-  Serial.print("Soft AP IP Address: ");
-  Serial.println(WiFi.softAPIP());
-
-  // server.on("/tes", handleRoot);
-  server.on("/GetData", handleGetData);
-  server.begin();
-  Serial.println("HTTP server started.");
-  //
-
   // xTaskCreatePinnedToCore(DO_task, "DO task", 1024 * 2 , NULL, 5, NULL, 1);
-  xTaskCreatePinnedToCore(turbidity_task, "Turbidity task", 1024 * 2, NULL, 5, NULL, 1);
+  // xTaskCreatePinnedToCore(turbidity_task, "Turbidity task", 1024 * 2, NULL, 5, NULL, 1);
   // xTaskCreatePinnedToCore(EC_task, "EC task", 1024 * 2 , NULL, 5, NULL, 1);
   // xTaskCreatePinnedToCore(pH_task, "pH task", 1024 * 2 , NULL, 5, NULL, 1);
   // xTaskCreatePinnedToCore(server_task, "Server task", 1024 * 4 , NULL, 15, NULL, 1);
@@ -152,17 +122,17 @@ void pH_task(void *pvParameters)
   }
 }
 
-void server_task(void *pvParameters)
-{
-  (void)pvParameters;
-  while (1)
-  {
-    server.handleClient();
-    receivedData = String(DOdata / 1000);
-    tb.sendTelemetryFloat("data DO", DOdata);
-    tb.sendTelemetryFloat("data EC", ecdata);
-    tb.sendTelemetryFloat("data pH", phdata);
-    // tb.sendTelemetryInt("data turbidity", turbiditydata);
-    vTaskDelay(5000);
-  }
-}
+// void server_task(void *pvParameters)
+// {
+//   (void)pvParameters;
+//   while (1)
+//   {
+//     server.handleClient();
+//     receivedData = String(DOdata / 1000);
+//     tb.sendTelemetryFloat("data DO", DOdata);
+//     tb.sendTelemetryFloat("data EC", ecdata);
+//     tb.sendTelemetryFloat("data pH", phdata);
+//     // tb.sendTelemetryInt("data turbidity", turbiditydata);
+//     vTaskDelay(5000);
+//   }
+// }
