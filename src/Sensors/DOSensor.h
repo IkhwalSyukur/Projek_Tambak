@@ -2,6 +2,8 @@
 #include <Arduino.h>
 #include "ADS1X15.h"
 
+#include "DS18b20.h"
+
 #define VREF 3300     // VREF (mV)
 #define ADC_RES 26470 // ADC Resolution
 #define TWO_POINT_CALIBRATION 0
@@ -56,4 +58,5 @@ public:
   bool init();
   bool calibrate(uint8_t gain);
   bool Measure(DO_Value &value);
+  bool Measure(DO_Value &value, Temperature_t &tempVal);
 };
