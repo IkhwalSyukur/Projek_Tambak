@@ -17,13 +17,6 @@ WifiHandler wifi("eFisheryPlus", "123123123");
 ServerHandler myServer("myServer");
 FuzzyHandler myFuzzy;
 
-// define dll
-const char *wifiSSID = "Variasi Aluminium 1";
-const char *wifiPassword = "hapisahsyukur2";
-
-const char *apSSID = "ESP-SoftAP";
-const char *apPassword = "";
-
 const char *thingsboardToken = "Ojz6j6cfFJgIJmz1ZIyh";
 const char *thingsboardServer = "thingsboard.cloud";
 const uint16_t thingsboardPort = 1883;
@@ -31,28 +24,27 @@ const uint16_t thingsboardPort = 1883;
 WebServer server(80);
 WiFiClient client;
 ThingsBoard tb(client);
-String paramToSend;
-//
 
 float DOdata;
-float turbiditydata;
-float ecdata;
-float phdata;
+// float turbiditydata;
+// float ecdata;
+// float phdata;
 
 void DO_task(void *pvParameters);
-void turbidity_task(void *pvParameters);
-void EC_task(void *pvParameters);
-void pH_task(void *pvParameters);
+// void turbidity_task(void *pvParameters);
+// void EC_task(void *pvParameters);
+// void pH_task(void *pvParameters);
 
 void setup()
 {
   sensor.setup();
-  turbidity.setup();
-  ecMeasurement.setup();
-  phMeasurement.setup();
+  // turbidity.setup();
+  // ecMeasurement.setup();
+  // phMeasurement.setup();
 
   //  Connect to Wi-Fi network
   wifi.init();
+  String paramToSend;
   myServer.postToClient(paramToSend); //perlu validasi
   myServer.begin();
 
@@ -79,48 +71,48 @@ void loop()
   vTaskDelete(NULL);
 }
 
-void DO_task(void *pvParameters)
-{
-  (void)pvParameters;
-  while (1)
-  {
-    DOdata = sensor.readDO();
-    Serial.println("DO:\t" + String(DOdata / 1000) + "\t");
-    vTaskDelay(500);
-  }
-}
+// void DO_task(void *pvParameters)
+// {
+//   (void)pvParameters;
+//   while (1)
+//   {
+//     DOdata = sensor.readDO();
+//     Serial.println("DO:\t" + String(DOdata / 1000) + "\t");
+//     vTaskDelay(500);
+//   }
+// }
 
-void turbidity_task(void *pvParameters)
-{
-  (void)pvParameters;
-  while (1)
-  {
-    turbiditydata = turbidity.read_sensor();
-    Serial.printf("Nilai Tegangan Turbidity = %f\n", turbidity.read_sensor());
-    vTaskDelay(500);
-  }
-}
+// void turbidity_task(void *pvParameters)
+// {
+//   (void)pvParameters;
+//   while (1)
+//   {
+//     turbiditydata = turbidity.read_sensor();
+//     Serial.printf("Nilai Tegangan Turbidity = %f\n", turbidity.read_sensor());
+//     vTaskDelay(500);
+//   }
+// }
 
-void EC_task(void *pvParameters)
-{
-  (void)pvParameters;
-  while (1)
-  {
-    ecdata = ecMeasurement.read();
-    vTaskDelay(500);
-  }
-}
+// void EC_task(void *pvParameters)
+// {
+//   (void)pvParameters;
+//   while (1)
+//   {
+//     ecdata = ecMeasurement.read();
+//     vTaskDelay(500);
+//   }
+// }
 
-void pH_task(void *pvParameters)
-{
-  (void)pvParameters;
-  while (1)
-  {
-    phdata = phMeasurement.read();
-    Serial.println("pH:\t" + String(phdata) + "\t");
-    vTaskDelay(500);
-  }
-}
+// void pH_task(void *pvParameters)
+// {
+//   (void)pvParameters;
+//   while (1)
+//   {
+//     phdata = phMeasurement.read();
+//     Serial.println("pH:\t" + String(phdata) + "\t");
+//     vTaskDelay(500);
+//   }
+// }
 
 // void server_task(void *pvParameters)
 // {
