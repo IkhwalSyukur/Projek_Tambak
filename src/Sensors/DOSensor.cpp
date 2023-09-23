@@ -3,7 +3,6 @@
 DOSensor::DOSensor(uint8_t pin) : _pin(pin), adcRaw(0), adcVoltage(0)
 {
     ADS = new ADS1115(0x48);
-    _temp = DEFAULT_TEMP;
 }
 
 DOSensor::~DOSensor()
@@ -22,6 +21,7 @@ bool DOSensor::init()
     else
     {
         _state = true;
+        _temp = DEFAULT_TEMP;
         ESP_LOGI(DO_SENSOR_TAG, "DO sensor ready !");
     }
 
@@ -61,7 +61,21 @@ bool DOSensor::calibrate(uint8_t gain)
 
 bool DOSensor::Measure(DO_Value &value)
 {
-    value.value = readValue();
+    value.value = 2.3;//readValue();
+
+    if (value.value < 0)
+    {
+        ESP_LOGW(DO_SENSOR_TAG, "DO Sensor no longer to be used !");
+        return false;
+    }
+
+    return true;
+}
+
+bool DOSensor::Measure(DO_Value &value, Temperature_t &tempVal)
+{
+    _temp = tempVal.temp;
+    value.value = 2.45;//readValue();
 
     if (value.value < 0)
     {
