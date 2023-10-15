@@ -14,7 +14,7 @@ void setup (){
 }
 
 float read_sensor(){
-    ADS.setGain(1); // setGain set to 1 to more precission
+    ADS.setGain(0); // setGain set to 1 to more precission
     int16_t nilai_turbidity = ADS.readADC(0);
     float voltage = nilai_turbidity * (3.3 / 26470.0);
     // voltage = map(voltage,0,3.3,0,5);
